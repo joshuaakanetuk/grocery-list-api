@@ -18,10 +18,11 @@ authRouter
         });
       }
     }
-    AuthService.getUserWithUsername(knexInstance, username).then((dbUser) => {
+    AuthService.getUserWithUserName(knexInstance, username).then((dbUser) => {
       if (!dbUser) {
+        
         return res.status(400).json({
-          error: "Incorrect username or password",
+          error: "User doesn't exist",
         });
       }
       AuthService.comparePasswords(password, dbUser.password).then(
